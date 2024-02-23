@@ -1,6 +1,6 @@
 # Linguistic Feature Extraction using spaCy
 
-This script extracts linguistic features: Part-of-Speech (POS) tags and named entities from text files using spaCy.
+This script extracts linguistic features from text files within subfolders. It extracts Part-of-Speech (POS) tags and named entities using spaCy and saves the output as CSV files for each subfolder in the chosen dataset.
 
 ## Requirements
 
@@ -37,9 +37,9 @@ The script assumes the following directory structure:
 project_root/
 │
 ├── in/
-│   └── USEcorpus/
-│       └── Subfolders/
-│           └── Data/
+│   └── Mainfolder/
+│       └── Subfolder/
+│           └── Textfile/
 │
 ├── out/
 │
