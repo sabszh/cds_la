@@ -1,41 +1,54 @@
-# Extracting linguistic features using spaCy
+# Linguistic Feature Extraction using spaCy
 
-This assignment concerns using ```spaCy``` to extract linguistic information from a corpus of texts.
+This script extracts linguistic features: Part-of-Speech (POS) tags and named entities from text files using spaCy.
 
-The corpus is an interesting one: *The Uppsala Student English Corpus (USE)*. All of the data is included in the folder called ```in``` but you can access more documentation via [this link](https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2457).
+## Requirements
 
-For this exercise, you should write some code which does the following:
+- Python > 3.10.12
+- `pandas` library
+- `spacy` library
+- `en_core_web_md` model for spaCy (downloadable using `python -m spacy download en_core_web_md`)
 
-- Loop over each text file in the folder called ```in```
-- Extract the following information:
-    - Relative frequency of Nouns, Verbs, Adjective, and Adverbs per 10,000 words
-    - Total number of *unique* PER, LOC, ORGS
-- For each sub-folder (a1, a2, a3, ...) save a table which shows the following information:
+## Usage
 
-|Filename|RelFreq NOUN|RelFreq VERB|RelFreq ADJ|RelFreq ADV|Unique PER|Unique LOC|Unique ORG|
-|---|---|---|---|---|---|---|---|
-|file1.txt|---|---|---|---|---|---|---|
-|file2.txt|---|---|---|---|---|---|---|
-|etc|---|---|---|---|---|---|---|
+1. Clone the repository or download the script.
 
-## Objective
+2. Install the required packages by running:
+    ```
+    pip install -r requirements.txt
+    ```
 
-This assignment is designed to test that you can:
+3. Run the script by executing:
+    ```
+    python script.py
+    ```
 
-1. Work with multiple input data arranged hierarchically in folders;
-2. Use ```spaCy``` to extract linguistic information from text data;
-3. Save those results in a clear way which can be shared or used for future analysis
+## Description
 
-## Some notes
+The script performs the following tasks:
 
-- The data is arranged in various subfolders related to their content (see the [README](in/README.md) for more info). You'll need to think a little bit about how to do this. You should be able do it using a combination of things we've already looked at, such as ```os.listdir()```, ```os.path.join()```, and for loops.
-- The text files contain some extra information that such as document ID and other metadata that occurs between pointed brackets ```<>```. Make sure to remove these as part of your preprocessing steps!
-- There are 14 subfolders (a1, a2, a3, etc), so when completed the folder ```out``` should have 14 CSV files.
+- **Cleaning Text**: Removes HTML tags from the text.
+- **Processing Text**: Extracts linguistic features from the text files, including the relative frequency of POS tags (Nouns, Verbs, Adjectives, Adverbs) and counts of unique named entities (Person, Location, Organization).
+- **Running the Script**: Processes text files located in specified directories and outputs the results as CSV files.
 
-## Additional comments
+## File Structure
+The script assumes the following directory structure:
 
-Your code should include functions that you have written wherever possible. Try to break your code down into smaller self-contained parts, rather than having it as one long set of instructions.
+project_root/
+│
+├── in/
+│   └── USEcorpus/
+│       └── Subfolders/
+│           └── Data/
+│
+├── out/
+│
+├── src/
+│   ├── requirements.txt
+│   └── script.py
+│
+└── README.md
 
-For this assignment, you are welcome to submit your code either as a Jupyter Notebook, or as ```.py``` script. If you do not know how to write ```.py``` scripts, don't worry - we're working towards that!
+## Output
 
-Lastly, you are welcome to edit this README file to contain whatever informatio you like. Remember - documentation is important!
+Processed data is saved as CSV files in the `out` directory. 
