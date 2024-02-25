@@ -66,7 +66,7 @@ def processing_text(file_path):
     return data
 
 ######
-# Running the script
+# Running the functions
 ######
 
 # Defining path to folders 
