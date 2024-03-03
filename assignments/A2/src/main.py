@@ -1,36 +1,39 @@
 ######
-# Training logictic regression classifier on data
+# Main script for training classifier on data
 ######
 
-# Importing system packages
+# Importing necessary packages
 import os
 import sys
-sys.path.append("..")
+sys.path.append("..")  # To import local modules
 
-# Importing other relevant packages
-import pandas as pd
-from sklearn.model_selection import train_test_split, ShuffleSplit
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifier
-from sklearn import metrics
-from joblib import dump, load
-
-# Importing local module
+# Importing local modules
 from data_processing import load_data, split_vectorize_fit_text
-from model_training import train_classifier
 from save_model_report import save_models, save_report
+from model_training import train_classifier
 
 # Loading the data
-data = load_data(os.path.join("in","fake_or_real_news.csv"))
+data = load_data(os.path.join("in", "fake_or_real_news.csv"))
 
-X_train_feats, X_test_feats, y_train, y_test, vectorizer = split_vectorize_fit_text(data,"text","label", 500)
+# Splitting, vectorizing, and fitting the text data
+X_train_feats, X_test_feats, y_train, y_test, vectorizer = split_vectorize_fit_text(data, "text", "label", 500)
 
-# Train classifier and get predictions
-classifier, y_pred = train_classifier(X_train, y_train, 'logistic_regression')
+# Training logistic regression classifier
+logreg_classifier = train_classifier(X_train_feats, y_train, classifier_type='logreg')
+
+# Training MLP classifier
+mlp_classifier = train_classifier(X_train_feats, y_train, classifier_type='mlp')
+
+# Making predictions using logistic regression classifier
+y_pred_logreg = logreg_classifier.predict(X_test_feats)
+
+# Making predictions using MLP classifier
+y_pred_mlp = mlp_classifier.predict(X_test_feats)
 
 # Saving models
-save_models(classifier, vectorizer,os.path.join("models"))
+save_models(logreg_classifier, vectorizer, os.path.join("models"))
+save_models(mlp_classifier, vectorizer, os.path.join("models"))
 
-# Making classification report 
-save_report(y_test,y_pred,os.path.join("out"))
+# Saving classification reports
+save_report(y_test, y_pred_logreg, os.path.join("out", "logreg_report.txt"))
+save_report(y_test, y_pred_mlp, os.path.join("out", "mlp_report.txt"))
