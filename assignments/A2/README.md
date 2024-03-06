@@ -10,7 +10,7 @@ This project involves training a classifier on a dataset to classify news articl
 
 - **Usage**:
   ```python
-  python main_script.py
+  python main.py
   ```
 
 ### 2. Script for data processing functions

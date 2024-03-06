@@ -9,8 +9,8 @@ sys.path.append("..")  # To import local modules
 
 # Importing local modules
 from data_processing import load_data, split_vectorize_fit_text
-from save_model_report import save_models, save_report
 from model_training import train_classifier
+from save_model_report import save_models, save_report
 
 # Loading the data
 data = load_data(os.path.join("in", "fake_or_real_news.csv"))
