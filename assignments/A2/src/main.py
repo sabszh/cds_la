@@ -31,8 +31,8 @@ y_pred_logreg = logreg_classifier.predict(X_test_feats)
 y_pred_mlp = mlp_classifier.predict(X_test_feats)
 
 # Saving models
-save_models(logreg_classifier, vectorizer, os.path.join("models"))
-save_models(mlp_classifier, vectorizer, os.path.join("models"))
+save_models(logreg_classifier, vectorizer, os.path.join("models"),"logreg")
+save_models(mlp_classifier, vectorizer, os.path.join("models"),"mlp")
 
 # Saving classification reports
 save_report(y_test, y_pred_logreg, os.path.join("out", "logreg_report.txt"))

@@ -8,7 +8,7 @@ import pandas as pd
 from sklearn import metrics
 from joblib import dump, load
 
-def save_models(classifier, vectorizer, output_path):
+def save_models(classifier, vectorizer, output_path,modelname):
     '''
     Save trained classifier and vectorizer to disk.
     
@@ -17,7 +17,7 @@ def save_models(classifier, vectorizer, output_path):
         vectorizer: Fitted vectorizer object.
         output_path (str): Path to save the models.
     '''
-    dump(classifier, os.path.join(output_path, f"classifier{classifier}.joblib"))
+    dump(classifier, os.path.join(output_path, f"classifier_{modelname}.joblib"))
     dump(vectorizer, os.path.join(output_path, "vectorizer.joblib"))
 
 def save_report(y_test, y_pred, output_path):
