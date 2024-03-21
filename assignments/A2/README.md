@@ -47,6 +47,8 @@ This project involves training a classifier on a dataset to classify news articl
 
 The project assumes the following directory structure:
 
+```
+.
 project_root/
 │
 ├── in/
@@ -69,3 +71,4 @@ project_root/
 │
 ├── requirements.txt
 └── README.md
+```

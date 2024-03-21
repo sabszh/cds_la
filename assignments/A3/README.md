@@ -40,6 +40,27 @@ Output:
 48.27% of Taylor Swift's songs contain words related to love and similar terms.
 ```
 
+## File Structure
+
+The project assumes the following directory structure:
+
+```
+.
+project_root/
+│
+├── in/
+│ └── songs_lyrics.csv
+│
+├── out/
+│ └── results.csv
+│
+├── src/
+│ └── lyrics_analysis.py
+│
+├── requirements.txt
+└── README.md
+```
+
 ## Dependencies
 
 - Python 3.x
