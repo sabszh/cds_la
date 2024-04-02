@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 pandas==2.2.1
 numpy==1.26.4
 gensim==4.3.2
+=======
+gensim==4.3.2
+numpy==1.26.4
+pandas==2.2.1
+>>>>>>> d07bfdce3a9caa38c2fe7f3d51f23bc4afaa7555

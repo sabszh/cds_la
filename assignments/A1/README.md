@@ -34,7 +34,13 @@ The script performs the following tasks:
 ## File Structure
 The script assumes the following directory structure:
 
+<<<<<<< HEAD
 ```
+=======
+
+```
+.
+>>>>>>> d07bfdce3a9caa38c2fe7f3d51f23bc4afaa7555
 project_root/
 │
 ├── in/
@@ -50,6 +56,10 @@ project_root/
 │
 └── README.md
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> d07bfdce3a9caa38c2fe7f3d51f23bc4afaa7555
 ## Output
 
 Processed data is saved as CSV files in the `out` directory. 
