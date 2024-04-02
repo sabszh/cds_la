@@ -1,6 +1,8 @@
-#####
-## Assignment 3 - Query expansion with word embeddings
-#####
+#!/usr/bin/python
+
+"""
+Assignment 3 - Query expansion with word embeddings
+"""
 
 # Importing packages
 import sys

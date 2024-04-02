@@ -10,8 +10,9 @@ This project involves training a classifier on a dataset to classify news articl
 
 - **Usage**:
   ```python
-  python main.py
+  python main.py [classifier_type]
   ```
+  - `classifier_type`: Type of classifier to train. Choose between 'logreg' and 'mlp'.
 
 ### 2. Script for data processing functions
 
@@ -47,6 +48,7 @@ This project involves training a classifier on a dataset to classify news articl
 
 The project assumes the following directory structure:
 
+```
 project_root/
 │
 ├── in/
@@ -69,3 +71,4 @@ project_root/
 │
 ├── requirements.txt
 └── README.md
+```

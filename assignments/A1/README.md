@@ -34,6 +34,7 @@ The script performs the following tasks:
 ## File Structure
 The script assumes the following directory structure:
 
+```
 project_root/
 │
 ├── in/
@@ -48,7 +49,7 @@ project_root/
 │   └── script.py
 │
 └── README.md
-
+```
 ## Output
 
 Processed data is saved as CSV files in the `out` directory. 

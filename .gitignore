@@ -1,4 +1,5 @@
 assignments/A1/in/USEcorpus
-git_config.sh
-data
+assignments/A2/in/fake_or_real_news.csv
+assignments/A3/.env
 assignments/A3/in/songs_lyrics.csv
+git_config.sh
