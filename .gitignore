@@ -1,5 +1,14 @@
 assignments/A1/in/USEcorpus
+
 assignments/A2/in/fake_or_real_news.csv
+
 assignments/A3/.env
 assignments/A3/in/songs_lyrics.csv
+
+assignments/A4/in/Game_of_Thrones_Script.csv
+assignments/A4/in/sample.csv
+assignments/A4/out/predicted_emotions.csv
+
+
+
 git_config.sh
