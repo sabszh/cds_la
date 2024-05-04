@@ -36,7 +36,6 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-
 def load_data(filename):
     '''
     Load data from a CSV file.

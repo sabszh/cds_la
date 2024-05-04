@@ -1,5 +1,7 @@
 """
-Assignment 4 - Emotion analysis with pretrained language models
+Assignment: 4 - Emotion analysis with pretrained language models
+Course: Language Analytics
+Author: Sabrina Zaki Hansen
 """
 
 import argparse

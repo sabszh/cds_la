@@ -1,7 +1,7 @@
-#!/usr/bin/python
-
 """
-Assignment 3 - Query expansion with word embeddings
+Assignment: 3 - Query expansion with word embeddings
+Course: Language Analytics
+Author: Sabrina Zaki Hansen
 """
 
 # Importing packages
