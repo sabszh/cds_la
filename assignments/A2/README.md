@@ -26,14 +26,15 @@ The data used in this analysis can be accesed via [this link](https://www.kaggle
     ```
 *Replace <classifier_type> with either 'logreg' for logistic regression or 'mlp' for MLP*.
 
-### Command-line Arguments
+## Script overview
+This Python script is designed for conducting text classification benchmarks. It utilizes various machine learning classifiers such as logistic regression and multilayer perceptron (MLP) to train models on text data and evaluate their performance. Below is a brief overview of the functionalities provided by the script:
 
+### Command-line Arguments
 The script accepts the following command-line argument:
 
 - `classifier_type`: Specifies the type of classifier to train, which can be either `'logreg'` for logistic regression or `'mlp'` for MLP classifier.
 
 ### Functions
-
 1. **`parse_arguments()`**: Parses the command-line arguments passed to the script.
 2. **`load_data(filename)`**: Loads data from a CSV file.
 3. **`split_vectorize_fit_text(data, text_column, label_column, max_features, test_size, ngram_range, lowercase, max_df, min_df)`**: Splits the data into training and testing sets, vectorizes the text data using TF-IDF, and returns the necessary components for training.
@@ -71,24 +72,66 @@ project_root/
 │ └── fake_or_real_news.csv
 │
 ├── out/
+│ ├── emissions/
+│ │  ├── emissions_base_{UUID}.csv # Check the task_name for which classifier type 
+│ │  ├── emissions_base_{UUID}.csv # As stated above
+│ │  └── emissions.csv # This file should just be ignored
+│ ├── models/
+│ │  ├── classifier_logreg.joblib
+│ │  ├── classifier_mlp.joblib
+│ │  └── vectorizer.joblib
 │ ├── logreg_report.txt
 │ └── mlp_report.txt
 │
-├── models/
-│ ├── classifierLogisticRegression.joblib
-│ ├── classifierMLPClassifier.joblib
-│ └── vectorizer.joblib
-│
 ├── src/
-│ ├── data_processing.py
-│ ├── model_training.py
-│ ├── save_model_report.py
-│ └── main_script.py
+│   └── text_classification.py
 │
+├── README.md
 ├── requirements.txt
-└── README.md
-<<<<<<< HEAD
+├── run.sh
+└── setup.sh
 ```
-=======
+
+## Output Summary
+The output of the text classification benchmarks is presented below for both logistic regression (logreg) and multilayer perceptron (MLP) classifiers.
+
+For logistic regression (logreg):
 ```
->>>>>>> d07bfdce3a9caa38c2fe7f3d51f23bc4afaa7555
+              precision    recall  f1-score   support
+
+        FAKE       0.89      0.88      0.89       628
+        REAL       0.88      0.90      0.89       639
+
+    accuracy                           0.89      1267
+   macro avg       0.89      0.89      0.89      1267
+weighted avg       0.89      0.89      0.89      1267
+```
+
+For multilayer perceptron (MLP):
+```
+              precision    recall  f1-score   support
+
+        FAKE       0.90      0.87      0.88       628
+        REAL       0.87      0.90      0.89       639
+
+    accuracy                           0.89      1267
+   macro avg       0.89      0.89      0.89      1267
+weighted avg       0.89      0.89      0.89      1267
+```
+Both models achieve around 89% accuracy in classifying fake and real news articles. Precision, recall, and F1-score provide insights into how effectively each model identifies true instances and minimizes false positives or negatives. Despite their strong performance, further optimization could address challenges like class imbalance and fine-tuning model parameters.
+
+## Discussion of Limitations and Possible Steps to Improvement
+While the classifiers achieved reasonably high accuracy, there are several limitations and potential areas for improvement:
+
+Gaining insights into the nature of the data would be an initial step towards understanding the model's overall performance. The manner in which the fake dataset was generated or collected remains undisclosed, making it challenging to assert the efficacy of the models or evaluate the fidelity of the data representation. Testing the model on another dataset, could be one way to gain further understanding. Additionally, including a separate validation set during model training could provide a more reliable estimate of performance and help prevent overfitting to the training data.
+
+A significant limitation of the benchmark lies in its exclusive reliance on TF-IDF vectorization for feature extraction. This method adopts a bag-of-words approach, which assumes that the occurrence of words in the document is independent of each other, disregarding the contextual relationships between them. This oversimplification may overlook crucial semantic nuances present in the text data, potentially constraining the model's ability to capture complex patterns and meanings.
+
+Moreover, the classifiers' hyperparameters, such as the number of hidden layers and neurons for the MLP classifier, were not extensively tuned. Conducting a thorough hyperparameter search using techniques like grid search or randomized search could yield better-performing and more accurate models.
+
+Taking a further stride, enhancing the interpretability of the models could provide insights into the features driving the predictions. This would make the models useful in terms of understanding the patterns of fake / real news.
+
+## CodeCarbon Tracking
+To track emissions, the script utilizes CodeCarbon. Emission data for each task is recorded in a CSV files located in the `out` directory.
+
+For a more detailed analysis of these results, please see Assignment 5.
