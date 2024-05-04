@@ -9,10 +9,22 @@ import os
 import pandas as pd
 import spacy
 import re
+import argparse
 
 # Loading spacy
-## Download spaCy module by: python -m spacy download en_core_web_md
 nlp = spacy.load("en_core_web_md")
+
+def parse_arguments():
+    """
+    Parse command-line arguments.
+
+    Returns:
+        argparse.Namespace: Parsed arguments.
+    """
+    parser = argparse.ArgumentParser(description="Train classifiers on data.")
+    parser.add_argument('classifier_type', type=str, choices=['logreg', 'mlp'], default='logreg', help="Type of classifier to train (logreg or mlp)")
+    args = parser.parse_args()
+    return args
 
 def cleaning_text(text):
     """
