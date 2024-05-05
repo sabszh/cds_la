@@ -1,5 +1,4 @@
 # Assignment 1: Extracting linguistic features using spaCy
-
 This script extracts linguistic features from the USEcorpus. It extracts Part-of-Speech (POS) tags and named entities using spaCy and saves the output as CSV files for each subfolder in the chosen dataset. It also tracks carbon emission.
 
 ## Data Source
@@ -48,12 +47,54 @@ Reflections (a3): Students reflect on the medium of television and its impact on
     ```
 
 ## Script overview
+This Python script, designed for extracting linguistic features using spaCy, facilitates text processing and analysis. IBelow is a breakdown of its functionalities:
 
-The script performs the following tasks:
+### Functions
+1. **`cleaning_text(text)`**: Cleans the input text by removing HTML tags.
+2. **`processing_text(file_path)`**: Processes the text file located at the given file path and extracts linguistic features, including the relative frequency of POS tags and counts of unique entities.
+3. **`main()`**: The main function orchestrates the execution of the script. It iterates over directories containing text files, processes each file to extract linguistic features, and saves the results to CSV files.
 
-- **Cleaning Text**: Removes HTML tags from the text.
-- **Processing Text**: Extracts linguistic features from the text files, including the relative frequency of POS tags (Nouns, Verbs, Adjectives, Adverbs) and counts of unique named entities (Person, Location, Organization).
-- **Main function**: Processes text files located in specified directories and outputs the results as CSV files.
+### Carbon Emission Tracking Integration
+
+The script integrates the Carbon Emission Tracker library to monitor and track carbon emissions during the execution of linguistic feature extraction tasks. It includes the following functionality:
+
+- Initializes the tracker with project details for each assignment folder.
+- Starts tracking emissions for each assignment folder.
+- Stops tracking emissions after completing processing for each assignment folder.
+- Saves emission data to a CSV file for further analysis.
+
+### Main Functionality
+The main function of the script performs the following steps:
+1. Creates an output directory if it does not exist.
+2. Processes text files located in subfolders of the input directory (`in/USEcorpus`).
+3. Extracts linguistic features from each text file and saves the results to CSV files.
+4. Prints progress messages indicating the completion of processing for each assignment folder.
+
+## Output Summary
+Processed data is saved as CSV files in the `out` directory. Each file is for each folder  It contains the followiing columns:
+- Filename: The name of the text file being processed.
+- Relative Frequency of NOUN: The relative frequency of nouns in the text.
+- Relative Frequency of VERB: The relative frequency of verbs in the text.
+- Relative Frequency of ADJ: The relative frequency of adjectives in the text.
+- Relative Frequency of ADV: The relative frequency of adverbs in the text.
+- Unique PER: The count of unique person entities detected in the text.
+- Unique LOC: The count of unique location entities detected in the text.
+- Unique ORG: The count of unique organization entities detected in the text.
+
+Overall the outputs do not give much insight, but the results are ready to be shared or used for future analysis.
+Moreover, the folder also contains output from CodeCarbon emission tracking `emissions.csv`.
+
+## Discussion of Limitations and Possible Steps to Improvement
+The linguistic patterns and characteristics present in the USE corpus may differ significantly from a general English language corpora. Thus, the generic nature of the linguistic feature extraction script may not fully capture the unique linguistic nuances and challenges exhibited by data of Swedish learner of English. Esspecially as the the data is from different times and different styles. Simply plotting the different features for each essay type could bring insight to linguistic differences, and by further qualitative expection bring clarity to whether it is due to model ineffecenicy of linguistic differences across the essays. 
+
+Moreover, this script relies on spaCy and its English model (`en_core_web_md`), impacting linguistic feature extraction accuracy. Entity recognition precision is affected by text quality and model relevance, potentially leading to affecting the performance.
+
+Improvements could involve adopting a larger or domain-specific model to improve accuracy, though this would still be with possible trade-offs. Optimizing code efficiency for processing large text volumes, through parallel processing or algorithmic improvements, is also beneficial. 
+
+## CodeCarbon Tracking
+To track emissions, the script utilizes CodeCarbon. Emission data for each task is recorded in a CSV file named `emissions.csv` located in the `out` directory.
+
+For a more detailed analysis of these results, please see Assignment 5.
 
 ## File Structure
 The script assumes the following directory structure:
@@ -84,29 +125,3 @@ A1/
 ├── run.sh
 └── setup.sh
 ```
-
-## Output Summary
-Processed data is saved as CSV files in the `out` directory. Each file is for each folder  It contains the followiing columns:
-- Filename: The name of the text file being processed.
-- Relative Frequency of NOUN: The relative frequency of nouns in the text.
-- Relative Frequency of VERB: The relative frequency of verbs in the text.
-- Relative Frequency of ADJ: The relative frequency of adjectives in the text.
-- Relative Frequency of ADV: The relative frequency of adverbs in the text.
-- Unique PER: The count of unique person entities detected in the text.
-- Unique LOC: The count of unique location entities detected in the text.
-- Unique ORG: The count of unique organization entities detected in the text.
-
-Overall the outputs do not give much insight, but the results are ready to be shared or used for future analysis.
-Moreover, the folder also contains output from CodeCarbon emission tracking `emissions.csv`.
-
-## Discussion of Limitations and Possible Steps to Improvement
-The linguistic patterns and characteristics present in the USE corpus may differ significantly from a general English language corpora. Thus, the generic nature of the linguistic feature extraction script may not fully capture the unique linguistic nuances and challenges exhibited by data of Swedish learner of English. Esspecially as the the data is from different times and different styles. Simply plotting the different features for each essay type could bring insight to linguistic differences, and by further qualitative expection bring clarity to whether it is due to model ineffecenicy of linguistic differences across the essays. 
-
-Moreover, this script relies on spaCy and its English model (`en_core_web_md`), impacting linguistic feature extraction accuracy. Entity recognition precision is affected by text quality and model relevance, potentially leading to affecting the performance.
-
-Improvements could involve adopting a larger or domain-specific model to improve accuracy, though this would still be with possible trade-offs. Optimizing code efficiency for processing large text volumes, through parallel processing or algorithmic improvements, is also beneficial. 
-
-## CodeCarbon Tracking
-To track emissions, the script utilizes CodeCarbon. Emission data for each task is recorded in a CSV file named `emissions.csv` located in the `out` directory.
-
-For a more detailed analysis of these results, please see Assignment 5.

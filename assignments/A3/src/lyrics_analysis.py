@@ -11,6 +11,7 @@ import argparse
 import pandas as pd
 import numpy as np
 import gensim.downloader as api
+from codecarbon import EmissionsTracker
 
 sys.path.append(os.path.join('..'))
 
@@ -22,7 +23,6 @@ def parse_arguments():
         argparse.Namespace: Parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Query expansion with word embeddings for song lyrics analysis")
-    parser.add_argument("file_path", type=str, help="Path to the file containing song lyrics")
     parser.add_argument("artist", type=str, help="Name of the artist to analyze")
     parser.add_argument("search_term", type=str, help="Word to expand the query")
     args = parser.parse_args()
@@ -95,34 +95,65 @@ def save_to_csv(output_path, artist, search_term, percentage):
 
 def main():
     """
-    Main function to execute the query expansion and analysis process.
+    Main function to execute the script.
     """
     # Parse the arguments
     args = parse_arguments()
+    
+    # Defining input folder
+    input_folder = os.path.join("in","Spotify Million Song Dataset_exported.csv")
+
+    # Create out directory if it does not exist
+    if not os.path.exists(os.path.join("out")):
+        os.makedirs(os.path.join("out"))
+
+    # Start CodeCarbon tracker
+    tracker = EmissionsTracker(project_name="Lyrics Analysis", 
+                              experiment_id="lyrics_analysis",
+                              output_dir = os.path.join("out"))
 
     # Load song lyric
-    lyrics = load_lyrics(args.file_path)
+    tracker.start_task("load_data")
+    lyrics = load_lyrics(input_folder)
+    tracker.stop_task()
 
     # Load word embedding model
+    tracker.start_task("load_embedding_model")
     model = api.load("glove-wiki-gigaword-50")
+    tracker.stop_task()
 
     # Find similar words to the search term
+    tracker.start_task("find_similar_words")
     similar_words = find_similar_words(model, args.search_term)
+    tracker.stop_task()
 
     # Expand query with similar words
+    tracker.start_task("expanding_query")
     expanded_query = [args.search_term] + similar_words
-    
+    tracker.stop_task()
+
     # Filter artists's songs
+    tracker.start_task("filter_artists_songs")
     artist_songs = [song for song in lyrics if args.artist.lower() in song.lower()]
+    tracker.stop_task()
 
     # Calculate percentage of songs featuring terms from the expanded query
+    tracker.start_task("calculate_percentage")
     percentage = calculate_percentage(artist_songs, expanded_query)
-
+    tracker.stop_task()
+    
     # Save results to CSV
+    tracker.start_task("save_to_csv")
     save_to_csv('out', args.artist, args.search_term, percentage)
+    tracker.stop_task()
 
     # Print results
+    tracker.start_task("printing_output")
     print(f"{percentage:.2f}% of {args.artist}'s songs contain words related to {args.search_term} and similar terms.")
-    
+    tracker.stop_task()
+
+    # Stop tracking emissions
+    _ = tracker.stop()
+
 if __name__=="__main__":
     main()

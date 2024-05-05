@@ -1,14 +1,26 @@
+# Ignore files related to Assignment 1
 assignments/A1/in/USEcorpus
+assignments/A1/venv
 
+# Ignore files related to Assignment 2
 assignments/A2/in/fake_or_real_news.csv
+assignments/A2/venv
 
-assignments/A3/.env
-assignments/A3/in/songs_lyrics.csv
+# Ignore files related to Assignment 3
+assignments/A3/in/Spotify Million Song Dataset_exported.csv
+assignments/A3/venv
 
+# Ignore files related to Assignment 4
 assignments/A4/in/Game_of_Thrones_Script.csv
 assignments/A4/in/sample.csv
 assignments/A4/out/predicted_emotions.csv
+assignments/A4/venv
+
+# Class stuff ignore
+class/env
+class/models
+class/utils
 
 
-
+# Ignore git_config.sh script
 git_config.sh

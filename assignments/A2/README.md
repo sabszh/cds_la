@@ -3,7 +3,7 @@
 This project involves training a classifier on a dataset to classify news articles as either real or fake. The script contains functions for data processing, model training, and saving trained models, classification reports and carbon emission tracking.
 
 ## Data Source
-The data used in this analysis can be accesed via [this link](https://www.kaggle.com/datasets/jillanisofttech/fake-or-real-news). The data contains 3 columns: title, text, label (FAKE/REAL). 
+The data used in this analysis can be accesed via [this link](https://www.kaggle.com/datasets/jillanisofttech/fake-or-real-news). The data contains 3 columns: `title`, `text`, `label` (FAKE/REAL).
 
 ## Requirements
 - Python > 3.10.12
@@ -24,7 +24,7 @@ The data used in this analysis can be accesed via [this link](https://www.kaggle
     ```
     bash run.sh <classifier_type>
     ```
-*Replace <classifier_type> with either 'logreg' for logistic regression or 'mlp' for MLP*.
+    - `<classifier_type>`: Model to classify with, either 'logreg' for logistic regression or 'mlp' for MLP*.
 
 ## Script overview
 This Python script is designed for conducting text classification benchmarks. It utilizes various machine learning classifiers such as logistic regression and multilayer perceptron (MLP) to train models on text data and evaluate their performance. Below is a brief overview of the functionalities provided by the script:
@@ -60,37 +60,6 @@ The main function of the script orchestrates the entire process:
 - Trains the specified classifier type.
 - Makes predictions on the test data.
 - Saves the trained models and classification report to the output directory.
-
-## File Structure
-
-The project assumes the following directory structure:
-
-```
-project_root/
-│
-├── in/
-│ └── fake_or_real_news.csv
-│
-├── out/
-│ ├── emissions/
-│ │  ├── emissions_base_{UUID}.csv # Check the task_name for which classifier type 
-│ │  ├── emissions_base_{UUID}.csv # As stated above
-│ │  └── emissions.csv # This file should just be ignored
-│ ├── models/
-│ │  ├── classifier_logreg.joblib
-│ │  ├── classifier_mlp.joblib
-│ │  └── vectorizer.joblib
-│ ├── logreg_report.txt
-│ └── mlp_report.txt
-│
-├── src/
-│   └── text_classification.py
-│
-├── README.md
-├── requirements.txt
-├── run.sh
-└── setup.sh
-```
 
 ## Output Summary
 The output of the text classification benchmarks is presented below for both logistic regression (logreg) and multilayer perceptron (MLP) classifiers.
@@ -135,3 +104,35 @@ Taking a further stride, enhancing the interpretability of the models could prov
 To track emissions, the script utilizes CodeCarbon. Emission data for each task is recorded in a CSV files located in the `out` directory.
 
 For a more detailed analysis of these results, please see Assignment 5.
+
+## File Structure
+
+The project assumes the following directory structure:
+
+```
+.
+A2/
+│
+├── in/
+│ └── fake_or_real_news.csv
+│
+├── out/
+│ ├── emissions/
+│ │  ├── emissions_base_{UUID}.csv # Check the task_name for which classifier type 
+│ │  ├── emissions_base_{UUID}.csv # As stated above
+│ │  └── emissions.csv # This file should just be ignored
+│ ├── models/
+│ │  ├── classifier_logreg.joblib
+│ │  ├── classifier_mlp.joblib
+│ │  └── vectorizer.joblib
+│ ├── logreg_report.txt
+│ └── mlp_report.txt
+│
+├── src/
+│   └── text_classification.py
+│
+├── README.md
+├── requirements.txt
+├── run.sh
+└── setup.sh
+```

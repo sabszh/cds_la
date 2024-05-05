@@ -3,12 +3,11 @@ Assignment: 4 - Emotion analysis with pretrained language models
 Course: Language Analytics
 Author: Sabrina Zaki Hansen
 """
-
-import argparse
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from transformers import pipeline
+from codecarbon import EmissionsTracker
 
 ######
 # Defining functions
@@ -79,7 +78,7 @@ def plot_season_emotions(data, output_dir):
         # Count the occurrences of each emotion label
         emotion_counts = season_data['Emotion_Label'].value_counts()
         # Plot the bar chart for emotion distribution in the current season
-        ax.bar(emotion_counts.index, emotion_counts.values, color=[emotion_colors.get(emotion, 'black') for emotion in emotion_counts.index])
+        ax.bar(emotion_counts.index, emotion_counts.values, color=[emotion_colors.get(emotion) for emotion in emotion_counts.index])
         ax.set_title(f'Distribution of Emotion Labels in {season}')
         ax.set_xlabel('Emotion Label')
         ax.set_ylabel('Frequency')
@@ -102,22 +101,32 @@ def plot_relative_emotion_freq(data, output_dir):
         None
     """
     seasons = data['Season'].unique()
-    plt.figure()
-    width = 0.8 / len(seasons) 
-    offset = -0.4  
-    for season in seasons:
-        season_data = data[data['Season'] == season]
-        relative_freq = season_data['Emotion_Label'].value_counts(normalize=True)
-        labels = relative_freq.index
-        values = relative_freq.values
-        plt.bar(labels, values, width=width, align='center', label=f'{season}', alpha=0.8)
-        offset += width  
-    plt.title('Relative Frequency of Emotion Labels Across Seasons')
-    plt.xlabel('Emotion Label')
-    plt.ylabel('Relative Frequency')
-    plt.legend()
+    fig, axs = plt.subplots(3, 3, figsize=(15, 15))
+
+    emotion_colors = {
+        'anger': 'red',
+        'disgust': 'green',
+        'fear': 'purple',
+        'joy': 'yellow',
+        'neutral': 'gray',
+        'sadness': 'blue',
+        'surprise': 'orange'
+    }
+
+    for i, emotion_label in enumerate(data['Emotion_Label'].unique()):
+        emotion_data = data[data['Emotion_Label'] == emotion_label]
+        counts = emotion_data['Season'].value_counts().sort_index()
+        total_count = counts.sum()
+        relative_freq = counts / total_count  
+        ax = relative_freq.plot(kind='bar', ax=axs[i // 3, i % 3], color=emotion_colors.get(emotion_label, 'black'))
+        ax.set_title("Relative frequency of " + r"$\bf{" + emotion_label + "}$" + " across all seasons")
+        ax.set_xlabel('Seasons')
+        ax.set_ylabel('Relative Frequency')
+
+    plt.tight_layout()
     plt.savefig(os.path.join(output_dir, 'relative_emotion_frequency.png'))
     plt.close()
+
 
 # Save predicted emotions to a CSV file
 def save_predicted_emotions(data, output_dir):
@@ -137,7 +146,7 @@ def save_predicted_emotions(data, output_dir):
 # Main function
 ######
 
-def main(input_file):
+def main():
     """
     Main function to execute the emotion analysis pipeline.
 
@@ -147,31 +156,51 @@ def main(input_file):
     Returns:
         None
     """
-    output_dir = "out"
-    os.makedirs(output_dir, exist_ok=True)  # Create "out" directory if it doesn't exist
+
+    if not os.path.exists(os.path.join("out")):
+        os.makedirs(os.path.join("out"))
+    output_dir = os.path.join("out")
+    input_file = os.path.join("in","Game_of_Thrones_Script.csv")
+
+    # Start CodeCarbon tracker
+    tracker = EmissionsTracker(project_name="Emotion Analysis", 
+                              experiment_id="emotion_analysis",
+                              output_dir = output_dir)
 
     # Check if predicted_emotions.csv exists
     predicted_emotions_file = os.path.join(output_dir, 'predicted_emotions.csv')
     if os.path.exists(predicted_emotions_file):
         # If the file exists, load the data from it
+        tracker.start_task("load_data_existing_file")
         data = pd.read_csv(predicted_emotions_file)
+        tracker.stop_task()
     else:
         # If the file doesn't exist, load data from input file and predict emotion scores
+        tracker.start_task("load_data")
         data = pd.read_csv(input_file)
-        data = predict_emotion_scores(data) 
+        tracker.stop_task()
+
+        # Predict emotions
+        tracker.start_task("predict_emotions")
+        data = predict_emotion_scores(data)
+        tracker.stop_task()
+
         # Save predicted emotions to a CSV file
+        tracker.start_task("save_file_csv")
         save_predicted_emotions(data, output_dir)
+        tracker.stop_task()
 
     # Plot distribution of emotion labels in each season and save plots
+    tracker.start_task("plot_emotions_distribution")
     plot_season_emotions(data, output_dir)
+    tracker.stop_task()
 
     # Plot relative frequency of each emotion label across all seasons and save plot
+    tracker.start_task("plot_relative_frequency")
     plot_relative_emotion_freq(data, output_dir)
+    tracker.stop_task()
 
+    _ = tracker.stop()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Emotion analysis of Game of Thrones script data.")
-    parser.add_argument("input_file", type=str, help="Path to the input data file")
-    args = parser.parse_args()
-
-    main(args.input_file)
+    main()

@@ -145,10 +145,10 @@ def save_report(y_test, y_pred, output_path):
         report_file.write(class_report)
     print("Report file saved")
 
-######
-# Main function
-######
 def main():
+    """
+    Main function to execute the script.
+    """
     # Parse the arguments
     args = parse_arguments()
 
