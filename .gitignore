@@ -16,6 +16,9 @@ assignments/A4/in/sample.csv
 assignments/A4/out/predicted_emotions.csv
 assignments/A4/venv
 
+# Ignore files related to Assignment 5
+assignments/A5/venv
+
 # Class stuff ignore
 class/env
 class/models
