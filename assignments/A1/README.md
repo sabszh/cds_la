@@ -31,10 +31,13 @@ Reflections (a3): Students reflect on the medium of television and its impact on
 - `pandas` library
 - `spacy` library
 - `codecarbon` library
+- `setuptools` library
 - `en_core_web_md` model for spaCy (downloadable using `python -m spacy download en_core_web_md`)
 
 ## Usage
-1. Clone or download the repository.
+To use this script, follow these steps:
+
+1. Clone or download the repository and make sure you have the file structure as pointed out, and the needed files stored in `in`
 
 2. Set up a virtual environment and install the required packages by running:
     ```

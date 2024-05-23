@@ -21,7 +21,7 @@ from joblib import dump, load
 from codecarbon import EmissionsTracker
 
 ######
-# Functions
+# Defining functions
 ######
 
 def parse_arguments():
@@ -144,6 +144,10 @@ def save_report(y_test, y_pred, output_path):
     with open(output_path, "w") as report_file:
         report_file.write(class_report)
     print("Report file saved")
+
+######
+# Main function
+######
 
 def main():
     """

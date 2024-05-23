@@ -1,4 +1,4 @@
-# Assignment 4 - Emotion analysis with pretrained language models
+# Assignment 4: Emotion analysis with pretrained language models
 This script performs emotion analysis on the scripts of the television show *Game of Thrones*. It predicts emotion scores for each line in the scripts using a pretrained language model, and then analyzes the distribution of emotions across seasons as well as the relative frequency of each emotion label across all seasons.
 
 ## Data Source
@@ -12,10 +12,12 @@ The dataset has the following: `release date` (original air data of the episode)
 - `transformers` library
 - `pandas` library
 - `codecarbon` library
+- `setuptools` library
 
 ## Usage
 To use this script, follow these steps:
-1. Clone or download the repository.
+
+1. Clone or download the repository and make sure you have the file structure as pointed out, and the needed files stored in `in`
 
 2. Set up a virtual environment and install the required packages by running:
     ```
@@ -53,10 +55,31 @@ The main function of the script performs the following steps:
 4. Plots the relative frequency of each emotion label across all seasons and saves the plot.
 
 ## Output Summary
-
+### Figure 1: Histogram of the disturbtion of all emotions in each season
 ![All seasons emotions disturbtions](out/all_seasons_emotions.png)
-![All seasons emotions disturbtions](out/relative_emotion_frequency.png)
 
+This figure contains a set of histograms showing the distribution of different emotion labels for each season. Each subplot represents a different season, and the x-axis shows different emotions (neutral, anger, surprise, disgust, sadness, fear, joy), while the y-axis indicates the frequency of these emotions. Here are the main observations:
+
+- **Neutral Emotion:** This is the most frequent emotion across all seasons. Its frequency is significantly higher than other emotions.
+- **Anger**: The second most common emotion, though its frequency varies slightly across seasons.
+- **Other Emotions**: Surprise, disgust, sadness, fear, and joy have relatively lower frequencies and are distributed more evenly across the seasons.
+- **Seasonal Variations**: While the overall trend of emotion distribution remains consistent, there are slight variations in the frequencies of emotions like anger, surprise, and joy across different seasons.
+
+### Figure 2: Relative frequency of emotion across seasons
+![Relative emotion frequency](out/relative_emotion_frequency.png)
+This figure contains individual bar charts showing the relative frequency of each emotion (disgust, surprise, neutral, fear, anger, joy, and sadness) across all seasons. Each subplot represents a different emotion, and the x-axis lists the seasons, while the y-axis indicates the relative frequency.
+
+- **Disgust**: Peaks in Season 2 and Season 3, with the lowest relative frequency in Season 8.
+- **Surprise**: Highest in Season 2, with a general decline towards Season 8.
+- **Neutral**: High relative frequency in Season 2, gradually declining in later seasons.
+- **Fear**: Highest in Season 2, showing a slight decrease over the seasons.
+- **Anger**: Peaks in Season 2, with a gradual decrease over subsequent seasons.
+- **Joy**: Highest relative frequency in Season 4, with noticeable drops in Seasons 7 and 8.
+- **Sadness**: Fairly consistent but slightly higher in Season 6, with a drop in Season 8.
+
+Neutral and anger are the most dominant emotions throughout the series. There's a noticeable peak in emotions like anger, surprise, and disgust in the earlier seasons (especially Season 2), which generally declines in later seasons, particularly in Season 8. Emotions like fear, sadness, and joy remain relatively stable, with only minor fluctuations across seasons.
+
+This analysis suggests that the emotional tone of "Game of Thrones" is heavily dominated by neutral and anger emotions, with significant shifts occurring around Season 2 and a general decline in intense emotions by the final season.
 
 ## Discussion of Limitations and Possible Steps to Improvement
 While the script offers valuable insights into emotion analysis using pretrained language models, it also exhibits certain limitations that could affect its performance.
@@ -65,15 +88,11 @@ One significant limitation is the reliance on a single pretrained language model
 
 Another potential limitation lies in the training data used to develop the pretrained language model for emotion classification. If the training data is biased or limited in scope, it may not adequately capture the complexity and diversity of emotions present in real-world text data. To mitigate this limitation, researchers could explore strategies for curating diverse and representative training datasets, incorporating data augmentation techniques, or fine-tuning pretrained models on domain-specific text corpora relevant to the application domain.
 
-Additionally, the script's reliance on text data alone for emotion analysis may overlook important contextual cues or non-verbal signals that contribute to understanding emotions in natural language. Incorporating multimodal inputs, such as audio, video, or physiological data, could enhance the accuracy and granularity of emotion predictions, particularly in multimedia-rich environments like social media platforms or virtual environments.
+Additionally, the script's reliance on text data alone for emotion analysis may overlook important contextual cues or non-verbal signals that contribute to understanding emotions in natural language. Incorporating multimodal inputs, such as audio, video, or physiological data, could enhance the accuracy and granularity of emotion predictions, particularly in multimedia environments.
 
 Furthermore, the current implementation of the script focuses primarily on static analysis of emotion distributions across seasons or episodes of a TV series. To provide more dynamic and actionable insights, future versions of the script could incorporate temporal analysis techniques, sentiment trend analysis, or sentiment tracking over time to capture evolving emotional dynamics and narrative arcs within the text data.
 
-Lastly, the script's integration of carbon emission tracking offers valuable transparency and accountability in assessing the environmental impact of computational tasks. However, it does not directly address other sustainability considerations, such as energy efficiency optimizations or renewable energy usage. To promote more sustainable computing practices, future iterations of the script could explore energy-efficient model architectures, resource-aware scheduling algorithms, or cloud computing strategies optimized for reducing carbon footprints while maintaining computational performance.
-
-Overall, while the script represents a promising approach to emotion analysis with pretrained language models, addressing these limitations and implementing proactive steps for improvement could enhance its effectiveness, reliability, and relevance in various real-world applications.
-
-investigate charcters impact 
+Overall, while the script represents a promising approach to emotion analysis of the transcript with pretrained language models, addressing these limitations and implementing steps for improvement could enhance its effectiveness, reliability, and relevance in various real-world applications.
 
 ## Repository Structure
 Ensure that your repository follows the structure outlined below:

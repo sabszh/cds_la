@@ -8,12 +8,15 @@ The data used in this analysis can be accesed via [this link](https://www.kaggle
 ## Requirements
 - Python > 3.10.12
 - `codecarbon` library
+- `setuptools` library
 - `joblib` library
 - `pandas` library
 - `scikit_learn` library
 
 ## Usage
-1. Clone or download the repository.
+To use this script, follow these steps:
+
+1. Clone or download the repository and make sure you have the file structure as pointed out, and the needed files stored in `in`
 
 2. Set up a virtual environment and install the required packages by running:
     ```
@@ -26,8 +29,8 @@ The data used in this analysis can be accesed via [this link](https://www.kaggle
     ```
     - `<classifier_type>`: Model to classify with, either 'logreg' for logistic regression or 'mlp' for MLP*.
 
-## Script overview
-This Python script is designed for conducting text classification benchmarks. It utilizes various machine learning classifiers such as logistic regression and multilayer perceptron (MLP) to train models on text data and evaluate their performance. Below is a brief overview of the functionalities provided by the script:
+## Script Overview
+This Python script is designed for conducting text classification benchmarks. It utilizes machine learning classifiers: logistic regression and multilayer perceptron (MLP) to train models on text data and evaluate their performance. Below is a brief overview of the functionalities provided by the script:
 
 ### Command-line Arguments
 The script accepts the following command-line argument:
@@ -64,7 +67,7 @@ The main function of the script orchestrates the entire process:
 ## Output Summary
 The output of the text classification benchmarks is presented below for both logistic regression (logreg) and multilayer perceptron (MLP) classifiers.
 
-For logistic regression (logreg):
+### Table 1: For logistic regression (logreg)
 ```
               precision    recall  f1-score   support
 
@@ -76,7 +79,7 @@ For logistic regression (logreg):
 weighted avg       0.89      0.89      0.89      1267
 ```
 
-For multilayer perceptron (MLP):
+### Table 2: For multilayer perceptron (MLP)
 ```
               precision    recall  f1-score   support
 
@@ -87,12 +90,10 @@ For multilayer perceptron (MLP):
    macro avg       0.89      0.89      0.89      1267
 weighted avg       0.89      0.89      0.89      1267
 ```
-Both models achieve around 89% accuracy in classifying fake and real news articles. Precision, recall, and F1-score provide insights into how effectively each model identifies true instances and minimizes false positives or negatives. Despite their strong performance, further optimization could address challenges like class imbalance and fine-tuning model parameters.
+Both models achieve around 89% accuracy in classifying fake and real news articles. Precision, recall, and F1-score provide insights into how effectively each model identifies true instances and minimizes false positives or negatives. Despite their strong performance, further optimization could address challenges like class imbalance.
 
 ## Discussion of Limitations and Possible Steps to Improvement
-While the classifiers achieved reasonably high accuracy, there are several limitations and potential areas for improvement:
-
-Gaining insights into the nature of the data would be an initial step towards understanding the model's overall performance. The manner in which the fake dataset was generated or collected remains undisclosed, making it challenging to assert the efficacy of the models or evaluate the fidelity of the data representation. Testing the model on another dataset, could be one way to gain further understanding. Additionally, including a separate validation set during model training could provide a more reliable estimate of performance and help prevent overfitting to the training data.
+While the classifiers achieved reasonably high accuracy, there are several limitations and potential areas for improvement: Gaining insights into the nature of the data would be an initial step towards understanding the model's overall performance. The manner in which the fake dataset was generated or collected remains undisclosed, making it challenging to assert the efficacy of the models or evaluate the fidelity of the data representation. Testing the model on another dataset, could be one way to gain further understanding. Additionally, including a separate validation set during model training could provide a more reliable estimate of performance and help prevent overfitting to the training data.
 
 A significant limitation of the benchmark lies in its exclusive reliance on TF-IDF vectorization for feature extraction. This method adopts a bag-of-words approach, which assumes that the occurrence of words in the document is independent of each other, disregarding the contextual relationships between them. This oversimplification may overlook crucial semantic nuances present in the text data, potentially constraining the model's ability to capture complex patterns and meanings.
 

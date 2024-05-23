@@ -1,8 +1,18 @@
+"""
+Assignment: 5 - Evaluating environmental impact of your exam portfolio
+Course: Language Analytics
+Author: Sabrina Zaki Hansen
+"""
+
+# Importing libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
 import os
 
+######
+# Defining functions
+######
 def read_csv_files():
     """Read CSV files from the 'in' folder."""
     a1_df = pd.read_csv(os.path.join("in", "A1_emissions.csv"))
@@ -81,6 +91,9 @@ def group_and_plot_task_emissions(a2_logreg_df, a2_mlp_df, a3_df, a4_df):
     plt.tight_layout()
     plt.savefig(os.path.join("out", "task_emissions.png"))
 
+######
+# Main function
+######
 def main():
     """Main function."""
     if not os.path.exists("out"):

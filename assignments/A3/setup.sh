@@ -2,6 +2,8 @@
 
 # Create and activate virtual environment
 python3 -m venv venv
+
+# Activiate the virtual environment
 source venv/bin/activate
 
 # Upgrade pip

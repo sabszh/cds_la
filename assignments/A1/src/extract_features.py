@@ -15,6 +15,10 @@ from codecarbon import EmissionsTracker
 # Loading spacy
 nlp = spacy.load("en_core_web_md")
 
+######
+# Defining functions
+######
+
 def cleaning_text(text):
     """
     Clean the input text by removing HTML tags.
@@ -67,6 +71,10 @@ def processing_text(file_path):
     }
     
     return data
+
+######
+# Main function
+######
 
 def main():
     """

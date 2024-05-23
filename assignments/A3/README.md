@@ -10,10 +10,12 @@ The song lyrics used for this analysis was obtained from [this dataset](https://
 - `numpy` library
 - `pandas` library
 - `codecarbon` library
+- `setuptools` library
 
 ## Usage
 To use this script, follow these steps:
-1. Clone or download the repository.
+
+1. Clone or download the repository and make sure you have the file structure as pointed out, and the needed files stored in `in`
 
 2. Set up a virtual environment and install the required packages by running:
     ```
@@ -81,12 +83,25 @@ The main function of the script orchestrates the entire process:
 ## Output Summary
 The script outputs the percentage of songs by the specified artist containing words related to the search term and similar terms. It also saves the results to a CSV file named `results.csv` in the `out` directory.
 
+### Table 1: Example of output for results.csv
+| Artist         | Search Term | Percentage |
+|----------------|--------------|------------|
+| Taylor Swift   | love         | 48.27%     |
+| Harry Styles   | love         | 11.76%     |
+| One Direction  | happy        | 100.0%     |
+| Fleetwood Mac  | chain        | 0.54%      |
+| The Beatles    | peace        | 0.45%      |
+| The Strokes    | reptilia     | 0%         |
+
+
 ## Discussion of Limitations and Possible Steps to Improvement
 While the current implementation of the script serves its purpose for query expansion and analysis of song lyrics, there are several limitations and areas for potential improvement.
 
-Firstly, the choice of word embedding model, such as GloVe, while common and widely used, may not always capture the nuanced relationships between words effectively. Exploring different word embedding models or training custom embeddings on domain-specific data could potentially enhance the relevance of the expanded terms. Moreover, the absence of a benchmarking or evaluation tool makes it challenging to gauge the performance of the script and/or model accurately.
+Firstly, the choice of word embedding model, such as GloVe, may not always capture the nuanced relationships between words effectively. Exploring different word embedding models or training custom embeddings on domain-specific data could potentially enhance the relevance of the expanded terms. Moreover, the absence of a benchmarking or evaluation tool makes it challenging to gauge the performance of the script and/or model accurately.
 
-Additionally, the query expansion strategy employed by the script is relatively simplistic, relying on finding similar words to the given search term. While this approach is effective in many cases, it may overlook context-specific relationships between words. Incorporating more sophisticated query expansion techniques, such as semantic similarity or context-aware embeddings, could lead to more nuanced and relevant expansions. Furthermore, the script does not explicitly address the challenges posed by ambiguous or polysemous words. As a result, the expanded query may include irrelevant or ambiguous terms that could lead to inaccurate analysis results. Incorporating techniques to disambiguate words or considering contextual information could mitigate this issue.
+Additionally, the query expansion strategy employed by the script is relatively simplistic, relying on finding similar words to the given search term. While this approach is effective in many cases, it may overlook context-specific relationships between words. Incorporating more sophisticated query expansion techniques, such as semantic similarity or context-aware embeddings, could lead to more nuanced and relevant expansions. Furthermore, the script does not explicitly address the challenges posed by ambiguous or polysemous words. As a result, the expanded query may include irrelevant or ambiguous terms that could lead to inaccurate analysis results. Incorporating techniques to disambiguate words or considering contextual information could mitigate this issue. Moreover, it would be relevant investigating the impact on the performance of pre-processing the text.
+
+From a computational standpoint, it would be advantageous to create word embeddings of the lyrics data and store the resulting vectors in a vector store for more efficient access. This approach could also facilitate deeper exploration of the lyrics, providing potential insights into patterns within the lyrics and artists.
 
 ## CodeCarbon Tracking
 To track emissions, the script utilizes CodeCarbon. Emission data for each task is recorded in a CSV files located in the `out` directory.

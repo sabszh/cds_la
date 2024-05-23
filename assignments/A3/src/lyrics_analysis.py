@@ -15,6 +15,10 @@ from codecarbon import EmissionsTracker
 
 sys.path.append(os.path.join('..'))
 
+######
+# Defining functions
+######
+
 def parse_arguments():
     """
     Parse command-line arguments.
@@ -92,6 +96,10 @@ def save_to_csv(output_path, artist, search_term, percentage):
         df.to_csv(output_file, mode='a', header=False, index=False)
     else:
         df.to_csv(output_file, index=False)
+
+######
+# Main function
+######
 
 def main():
     """
