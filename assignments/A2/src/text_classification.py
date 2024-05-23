@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
 Assignment: 2 - Text classification benchmarks
 Course: Language Analytics
