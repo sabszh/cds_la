@@ -2,6 +2,7 @@
 **Course**: Language Analytics
  
 **Author**: Sabrina Zaki Hansen
+**Github-link**: https://github.com/sabszh/cds_la/
 
 ## Table of Contents
 - [Assignment 1: Extracting linguistic features using spaCy](#assignment-1-extracting-linguistic-features-using-spacy)
