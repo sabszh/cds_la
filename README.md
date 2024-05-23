@@ -525,7 +525,7 @@ The main function of the script performs the following steps:
 
 ### Output Summary
 #### Figure 1: Histogram of the disturbtion of all emotions in each season
-![All seasons emotions disturbtions](out/all_seasons_emotions.png)
+![All seasons emotions disturbtions](plots/all_seasons_emotions.png)
 
 This figure contains a set of histograms showing the distribution of different emotion labels for each season. Each subplot represents a different season, and the x-axis shows different emotions (neutral, anger, surprise, disgust, sadness, fear, joy), while the y-axis indicates the frequency of these emotions. Here are the main observations:
 
@@ -535,7 +535,7 @@ This figure contains a set of histograms showing the distribution of different e
 - **Seasonal Variations**: While the overall trend of emotion distribution remains consistent, there are slight variations in the frequencies of emotions like anger, surprise, and joy across different seasons.
 
 #### Figure 2: Relative frequency of emotion across seasons
-![Relative emotion frequency](out/relative_emotion_frequency.png)
+![Relative emotion frequency](plots/relative_emotion_frequency.png)
 This figure contains individual bar charts showing the relative frequency of each emotion (disgust, surprise, neutral, fear, anger, joy, and sadness) across all seasons. Each subplot represents a different emotion, and the x-axis lists the seasons, while the y-axis indicates the relative frequency.
 
 - **Disgust**: Peaks in Season 2 and Season 3, with the lowest relative frequency in Season 8.
@@ -600,12 +600,12 @@ This assignment evaluates the environmental impact of the work completed in the 
 
 ### Results
 #### Figure 1: Total Emissions
-![Total Emissions](out/total_emissions.png)
+![Total Emissions](plots/total_emissions.png)
 
 Assignment 4 (Emotion analysis with pretrained language model) generated the highest emissions in terms of CO₂eq. The emission was equal to 88.60% of the total generated emission across all assignments. 
 
 #### Figure: Task Emissions
-![Task Emissions](out/task_emissions.png)
+![Task Emissions](plots/task_emissions.png)
 
 The task on predicting emotions in assignment 4 was the one producing most emissions - namely 99.86%. 
 
