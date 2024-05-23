@@ -2,6 +2,7 @@
 **Course**: Language Analytics
  
 **Author**: Sabrina Zaki Hansen
+ 
 **Github-link**: https://github.com/sabszh/cds_la/
 
 ## Table of Contents
